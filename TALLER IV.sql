@@ -1,5 +1,25 @@
 USE TALLER3; 
 
+--VERSIÓN ANTES DE CAMBIOS
+GO 
+CREATE PROCEDURE Obtener_Datos
+  @id_Clínica INT,
+  @id_Cliente INT, 
+  @fecha VARCHAR (32)
+  AS
+  BEGIN
+    SELECT ct.id_clinica, ct.id_cliente, ct.fecha 
+    FROM CLINICA cl 
+    INNER JOIN CITA ct 
+     ON cl.id = ct.id_clinica
+    WHERE ct.id_clinica = @id_Clínica AND ct.fecha = @fecha;
+  END
+GO
+
+EXEC Obtener_Datos 1, 19, '20-05-2022 09:00:00.000';
+
+
+--/////////////////////////Intentos
 GO
 CREATE PROCEDURE agendar_cita 
   @id_Clínica INT,
@@ -43,8 +63,6 @@ CREATE PROCEDURE agendar_cita
 GO
 
 EXEC agendar_cita 1, 19, '20-05-2022 09:00:00.000';
-
-DROP PROCEDURE Obtener_Datos;
 
 --Datos sobre los médicos 
 SELECT ct.id, ct.id_clinica, ctr.id_medico, ctr.horario, ctr.fecha_contrato ,ctr.salario FROM CLINICA cl 
