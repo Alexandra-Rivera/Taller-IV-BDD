@@ -15,7 +15,7 @@ CREATE PROCEDURE agendar_cita
     GROUP BY ct.fecha /*ct.id, ct.id_cliente*/ ;
     
     DECLARE @num_Consultorios INT;
-    SELECT @num_Consultorios = COUNT(con.id_clinica) 'Número de consultorios' FROM CLINICA cl 
+    SELECT @num_Consultorios = COUNT(con.id_clinica) FROM CLINICA cl 
     INNER JOIN CONSULTORIO con 
       ON cl.id = con.id_clinica
     GROUP BY cl.nombre; 
